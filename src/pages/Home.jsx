@@ -20,14 +20,15 @@ const Home = () => {
         .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`)
         .then((res) => {
           setData(res.data);
+          setShowRecent(false);
           console.log(res.data);
           setSearch(false);
           setLoading(false);
         })
         .catch((err) => {
-          setLoading(false)
+          setLoading(false);
           setSearch(false);
-        } );
+        });
     }
   }, [search]);
 
@@ -46,11 +47,20 @@ const Home = () => {
     }
   };
 
+  function refreshWindow() {
+    window.location.reload();
+  }
   return (
     <div className="flex flex-col h-full  gap-5">
       <div className="flex flex-col gap-3 ">
-        <h1 className="text-3xl font-semibold">Dictionary</h1>
-        <SearchBar handleChange={handleChange} onEnter={onEnter} setSearch={setSearch}/>
+        <h1 onClick={refreshWindow} className="text-3xl cursor-pointer font-semibold">
+          Dictionary
+        </h1>
+        <SearchBar
+          handleChange={handleChange}
+          onEnter={onEnter}
+          setSearch={setSearch}
+        />
         {/* <div className="flex flex-col ">
           <input
             className="bg-gray-200 rounded-md h-9 pb-1 pl-3 mb-3"
@@ -79,7 +89,7 @@ const Home = () => {
       ) : (
         <div className={`${data ? "" : "hidden"}`}>
           <ul className="flex flex-col gap-3 ">
-            { data?.map((words, index) => (
+            {data?.map((words, index) => (
               <li
                 className="flex flex-col p-2 bg-slate-50 text-slate-700 text-xs"
                 key={index}
