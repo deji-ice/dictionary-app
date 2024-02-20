@@ -7,10 +7,10 @@ const Home = () => {
   const [input, setInput] = useState("");
   const [search, setSearch] = useState(false);
   const [data, setData] = useState([]);
-  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
+    console.log("first");
     axios
       .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`)
       .then((res) => {
@@ -22,7 +22,6 @@ const Home = () => {
   }, [search]);
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setInput(e.target.value);
   };
 
@@ -79,7 +78,9 @@ const Home = () => {
                   ref={audioRef}
                   src={words.phonetics[0].audio ?? words.phonetics[1].audio}
                 ></audio>
-                <PiSpeakerSimpleHighFill onClick={togglePlay} />
+                <button onClick={togglePlay}>
+                  <PiSpeakerSimpleHighFill />
+                </button>
               </span>
               {words.meanings[0].definitions[0].definition ??
                 words.meanings[0].definitions[1].definition ??
