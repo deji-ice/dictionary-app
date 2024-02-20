@@ -9,7 +9,7 @@ const Home = () => {
   const [search, setSearch] = useState(false);
   const [data, setData] = useState([]);
   const [showRecent, setShowRecent] = useState(true);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => { 
