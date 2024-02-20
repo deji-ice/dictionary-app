@@ -68,7 +68,7 @@ const Home = () => {
         </div>
       </div>
       {loading && data ? (
-        <div className=" flex items-center justify-center">
+        <div className="my-5 flex items-center justify-center">
           <img src={loader} alt="" />
         </div>
       ) : (
